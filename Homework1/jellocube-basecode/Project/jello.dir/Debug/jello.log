@@ -1,0 +1,51 @@
+﻿main.obj : error LNK2019: unresolved external symbol __glutInitWithExit referenced in function glutInit_ATEXIT_HACK
+main.obj : error LNK2019: unresolved external symbol glutInitDisplayMode referenced in function main
+main.obj : error LNK2019: unresolved external symbol glutInitWindowPosition referenced in function main
+main.obj : error LNK2019: unresolved external symbol glutInitWindowSize referenced in function main
+main.obj : error LNK2019: unresolved external symbol glutMainLoop referenced in function main
+main.obj : error LNK2019: unresolved external symbol __glutCreateWindowWithExit referenced in function glutCreateWindow_ATEXIT_HACK
+main.obj : error LNK2019: unresolved external symbol glutPostRedisplay referenced in function "void __cdecl onMouseMotionCb(int,int)" (?onMouseMotionCb@@YAXHH@Z)
+main.obj : error LNK2019: unresolved external symbol glutSwapBuffers referenced in function "void __cdecl onDrawCb(void)" (?onDrawCb@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol __glutCreateMenuWithExit referenced in function glutCreateMenu_ATEXIT_HACK
+main.obj : error LNK2019: unresolved external symbol glutSetMenu referenced in function "void __cdecl onMouseCb(int,int,int,int)" (?onMouseCb@@YAXHHHH@Z)
+main.obj : error LNK2019: unresolved external symbol glutAddMenuEntry referenced in function main
+main.obj : error LNK2019: unresolved external symbol glutAddSubMenu referenced in function main
+main.obj : error LNK2019: unresolved external symbol glutAttachMenu referenced in function main
+main.obj : error LNK2019: unresolved external symbol glutDisplayFunc referenced in function main
+main.obj : error LNK2019: unresolved external symbol glutReshapeFunc referenced in function main
+main.obj : error LNK2019: unresolved external symbol glutKeyboardFunc referenced in function main
+main.obj : error LNK2019: unresolved external symbol glutMouseFunc referenced in function main
+main.obj : error LNK2019: unresolved external symbol glutMotionFunc referenced in function main
+main.obj : error LNK2019: unresolved external symbol glutTimerFunc referenced in function "void __cdecl onTimerCb(int)" (?onTimerCb@@YAXH@Z)
+main.obj : error LNK2019: unresolved external symbol glutSpecialFunc referenced in function main
+main.obj : error LNK2019: unresolved external symbol glutGetModifiers referenced in function "void __cdecl onMouseCb(int,int,int,int)" (?onMouseCb@@YAXHHHH@Z)
+main.obj : error LNK2019: unresolved external symbol glutBitmapCharacter referenced in function "void __cdecl drawOverlay(void)" (?drawOverlay@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol __imp_ilBindImage referenced in function "void __cdecl grabScreen(void)" (?grabScreen@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol __imp_ilDeleteImages referenced in function "void __cdecl grabScreen(void)" (?grabScreen@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol __imp_ilEnable referenced in function main
+main.obj : error LNK2019: unresolved external symbol __imp_ilGenImages referenced in function "void __cdecl grabScreen(void)" (?grabScreen@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol __imp_ilGetData referenced in function "void __cdecl grabScreen(void)" (?grabScreen@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol __imp_ilGetError referenced in function "void __cdecl grabScreen(void)" (?grabScreen@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol __imp_ilInit referenced in function main
+main.obj : error LNK2019: unresolved external symbol __imp_ilSave referenced in function "void __cdecl grabScreen(void)" (?grabScreen@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol __imp_ilTexImage referenced in function "void __cdecl grabScreen(void)" (?grabScreen@@YAXXZ)
+main.obj : error LNK2019: unresolved external symbol __imp_iluInit referenced in function main
+main.obj : error LNK2019: unresolved external symbol __imp_ilutRenderer referenced in function main
+world.obj : error LNK2019: unresolved external symbol "public: virtual __cdecl TiXmlNode::~TiXmlNode(void)" (??1TiXmlNode@@UEAA@XZ) referenced in function "public: virtual __cdecl TiXmlDocument::~TiXmlDocument(void)" (??1TiXmlDocument@@UEAA@XZ)
+world.obj : error LNK2019: unresolved external symbol "public: class TiXmlDocument const * __cdecl TiXmlNode::GetDocument(void)const " (?GetDocument@TiXmlNode@@QEBAPEBVTiXmlDocument@@XZ) referenced in function "public: virtual bool __cdecl XMLWorldVisitor::VisitEnter(class TiXmlElement const &,class TiXmlAttribute const *)" (?VisitEnter@XMLWorldVisitor@@UEAA_NAEBVTiXmlElement@@PEBVTiXmlAttribute@@@Z)
+world.obj : error LNK2019: unresolved external symbol "public: char const * __cdecl TiXmlElement::Attribute(char const *,double *)const " (?Attribute@TiXmlElement@@QEBAPEBDPEBDPEAN@Z) referenced in function "public: virtual bool __cdecl XMLWorldVisitor::VisitEnter(class TiXmlElement const &,class TiXmlAttribute const *)" (?VisitEnter@XMLWorldVisitor@@UEAA_NAEBVTiXmlElement@@PEBVTiXmlAttribute@@@Z)
+world.obj : error LNK2019: unresolved external symbol "public: __cdecl TiXmlDocument::TiXmlDocument(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (??0TiXmlDocument@@QEAA@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function "public: void __cdecl World::LoadFromFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?LoadFromFile@World@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+world.obj : error LNK2019: unresolved external symbol "public: bool __cdecl TiXmlDocument::LoadFile(enum TiXmlEncoding)" (?LoadFile@TiXmlDocument@@QEAA_NW4TiXmlEncoding@@@Z) referenced in function "public: void __cdecl World::LoadFromFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?LoadFromFile@World@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+world.obj : error LNK2001: unresolved external symbol "public: virtual char const * __cdecl TiXmlDocument::Parse(char const *,class TiXmlParsingData *,enum TiXmlEncoding)" (?Parse@TiXmlDocument@@UEAAPEBDPEBDPEAVTiXmlParsingData@@W4TiXmlEncoding@@@Z)
+world.obj : error LNK2001: unresolved external symbol "public: virtual void __cdecl TiXmlDocument::Print(struct _iobuf *,int)const " (?Print@TiXmlDocument@@UEBAXPEAU_iobuf@@H@Z)
+world.obj : error LNK2019: unresolved external symbol "public: virtual bool __cdecl TiXmlDocument::Accept(class TiXmlVisitor *)const " (?Accept@TiXmlDocument@@UEBA_NPEAVTiXmlVisitor@@@Z) referenced in function "public: void __cdecl World::LoadFromFile(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?LoadFromFile@World@@QEAAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+world.obj : error LNK2001: unresolved external symbol "protected: virtual class TiXmlNode * __cdecl TiXmlDocument::Clone(void)const " (?Clone@TiXmlDocument@@MEBAPEAVTiXmlNode@@XZ)
+world.obj : error LNK2001: unresolved external symbol "protected: virtual void __cdecl TiXmlDocument::StreamIn(class std::basic_istream<char,struct std::char_traits<char> > *,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > *)" (?StreamIn@TiXmlDocument@@MEAAXPEAV?$basic_istream@DU?$char_traits@D@std@@@std@@PEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@@Z)
+world.obj : error LNK2019: unresolved external symbol glutSolidSphere referenced in function "public: virtual void __cdecl World::Draw(void)" (?Draw@World@@UEAAXXZ)
+world.obj : error LNK2019: unresolved external symbol glutSolidCube referenced in function "public: virtual void __cdecl World::Draw(void)" (?Draw@World@@UEAAXXZ)
+C:/Users/Corey/Desktop/hello/Homework1/IDS6938-SimulationTechniques/Homework1/jellocube-basecode/Project/LIBS\DevIL.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+C:/Users/Corey/Desktop/hello/Homework1/IDS6938-SimulationTechniques/Homework1/jellocube-basecode/Project/LIBS\ilu.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+C:/Users/Corey/Desktop/hello/Homework1/IDS6938-SimulationTechniques/Homework1/jellocube-basecode/Project/LIBS\ilut.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+C:/Users/Corey/Desktop/hello/Homework1/IDS6938-SimulationTechniques/Homework1/jellocube-basecode/Project/LIBS\tinyxmld_STL.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+C:/Users/Corey/Desktop/hello/Homework1/IDS6938-SimulationTechniques/Homework1/jellocube-basecode/Project/LIBS\glut32.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Homework1\jellocube-basecode\Project\Debug\jello.exe : fatal error LNK1120: 45 unresolved externals
