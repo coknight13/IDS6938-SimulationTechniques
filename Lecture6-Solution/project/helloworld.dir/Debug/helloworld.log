@@ -1,8 +1,18 @@
-﻿  Building Custom Rule C:/Users/Corey/Desktop/hello/Homework1/IDS6938-SimulationTechniques/Lecture6-Solution/CMakeLists.txt
-  CMake does not need to re-run because C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\project\CMakeFiles\generate.stamp is up-to-date.
-  main.cpp
-C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(84): warning C4244: 'argument': conversion from 'double' to 'std::streamsize', possible loss of data
+﻿  main.cpp
 C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(85): warning C4244: 'argument': conversion from 'double' to 'std::streamsize', possible loss of data
 C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(86): warning C4244: 'argument': conversion from 'double' to 'std::streamsize', possible loss of data
 C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(87): warning C4244: 'argument': conversion from 'double' to 'std::streamsize', possible loss of data
+C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(88): warning C4244: 'argument': conversion from 'double' to 'std::streamsize', possible loss of data
+C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(99): warning C4244: 'argument': conversion from 'double' to 'std::streamsize', possible loss of data
+C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(100): warning C4244: 'argument': conversion from 'double' to 'std::streamsize', possible loss of data
+C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(122): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(160): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(161): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(162): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(164): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(167): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(174): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(177): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(183): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\main.cpp(186): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   helloworld.vcxproj -> C:\Users\Corey\Desktop\hello\Homework1\IDS6938-SimulationTechniques\Lecture6-Solution\project\Debug\helloworld.exe
