@@ -478,16 +478,19 @@ void JelloMesh::ComputeForces(ParticleGrid& grid)
 //Jello Cube Explosion		
 //		b.force = (((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length()))
 //			*(a.position - b.position) / ((a.position - b.position).Length());
+
+//Working Jello Cube Drop
 		a.force = m_vsprings[i].m_Ks*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length()))
 			*(a.position - b.position) / ((a.position - b.position).Length()) + a.force;
 		b.force = m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length()))
 			*(a.position - b.position) / ((a.position - b.position).Length()) + b.force;
-		
+
+//Stuck in Space
 //		a.force = (m_vsprings[i].m_Ks*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
 //			m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length())))
 //			*((a.position - b.position) / ((a.position - b.position).Length()) + a.force);
 //		
-//		b.force = -(m_vsprings[i].m_Ks*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
+//		b.force = -(m_vsprings[i].m_Kd*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
 //			m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length())))
 //			*((a.position - b.position) / ((a.position - b.position).Length()) + b.force);
 
@@ -506,7 +509,8 @@ void JelloMesh::ResolveContacts(ParticleGrid& grid)
         // TODO
 
 	   p.position = p.position + contact.m_distance*normal;
-	   p.velocity += (2 * (-p.velocity)*normal)*normal;
+	   //p.velocity += (2 * (-p.velocity)*normal)*normal;
+	   p.velocity += (-p.velocity)*normal);
 		  
     }
 }
