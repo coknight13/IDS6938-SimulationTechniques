@@ -3,16 +3,16 @@
 #include <algorithm>
 
 // TODO
-double JelloMesh::g_structuralKs = 0.0; 
-double JelloMesh::g_structuralKd = 0.0; 
-double JelloMesh::g_attachmentKs = 0.0;
-double JelloMesh::g_attachmentKd = 0.0;
-double JelloMesh::g_shearKs = 0.0;
-double JelloMesh::g_shearKd = 0.0;
-double JelloMesh::g_bendKs = 0.0;
-double JelloMesh::g_bendKd = 0.0;
-double JelloMesh::g_penaltyKs = 0.0;
-double JelloMesh::g_penaltyKd = 0.0;
+double JelloMesh::g_structuralKs = -150.0; 
+double JelloMesh::g_structuralKd = 100.0; 
+double JelloMesh::g_attachmentKs = 100.0;
+double JelloMesh::g_attachmentKd = -100.0;
+double JelloMesh::g_shearKs = 25.0;
+double JelloMesh::g_shearKd = 5.0;
+double JelloMesh::g_bendKs = 150.0;
+double JelloMesh::g_bendKd = 120.0;
+double JelloMesh::g_penaltyKs = 0.1;
+double JelloMesh::g_penaltyKd = 0.1;
 
 
 JelloMesh::JelloMesh() :     
@@ -203,6 +203,35 @@ void JelloMesh::InitJelloMesh()
         }
     }
 
+	// Setup bend springs
+	ParticleGrid& h = m_vparticles; 
+	for (int i = 0; i < m_rows + 1; i++)
+	{
+		for (int j = 0; j < m_cols + 1; j++)
+		{
+			for (int k = 0; k < m_stacks + 1; k++)
+			{
+				if (j < m_cols) AddBendSpring(GetParticle(h, i, j, k), GetParticle(h, i, j + 1, k));
+				if (i < m_rows) AddBendSpring(GetParticle(h, i, j, k), GetParticle(h, i + 1, j, k));
+				if (k < m_stacks) AddBendSpring(GetParticle(h, i, j, k), GetParticle(h, i, j, k + 1));
+			}
+		}
+	}
+
+	// Setup shear springs
+	ParticleGrid& a = m_vparticles;
+	for (int i = 0; i < m_rows + 1; i++)
+	{
+		for (int j = 0; j < m_cols + 1; j++)
+		{
+			for (int k = 0; k < m_stacks + 1; k++)
+			{
+				if (j < m_cols-1) AddShearSpring(GetParticle(a, i, j, k), GetParticle(a, i, j + 1, k));
+				if (i < m_rows-1) AddShearSpring(GetParticle(a, i, j, k), GetParticle(a, i + 1, j, k));
+				if (k < m_stacks-1) AddShearSpring(GetParticle(a, i, j, k), GetParticle(a, i, j, k + 1));
+			}
+		}
+	}
     // Init mesh geometry
     m_mesh.clear();
     m_mesh.push_back(FaceMesh(*this,XLEFT));
@@ -421,7 +450,7 @@ void JelloMesh::CheckForCollisions(ParticleGrid& grid, const World& world)
 
 void JelloMesh::ComputeForces(ParticleGrid& grid)
 {
-    // Add external froces to all points
+    // Add external forces to all points
     for (int i = 0; i < m_rows+1; i++)
     {
         for (int j = 0; j < m_cols+1; j++)
@@ -440,8 +469,29 @@ void JelloMesh::ComputeForces(ParticleGrid& grid)
         Spring& spring = m_vsprings[i];
         Particle& a = GetParticle(grid, spring.m_p1);
         Particle& b = GetParticle(grid, spring.m_p2);
+		
 
-        // TODO
+//		a.force = (m_vsprings[i].m_Ks*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
+//			m_vsprings[i].m_Kd*(((a.velocity + b.velocity)*(a.position + b.position)) / ((a.position - b.position).Length())))
+//			*((a.position - b.position) / ((a.position - b.position).Length()) + a.force);
+
+//Jello Cube Explosion		
+//		b.force = (((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length()))
+//			*(a.position - b.position) / ((a.position - b.position).Length());
+		a.force = m_vsprings[i].m_Ks*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length()))
+			*(a.position - b.position) / ((a.position - b.position).Length()) + a.force;
+		b.force = m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length()))
+			*(a.position - b.position) / ((a.position - b.position).Length()) + b.force;
+		
+//		a.force = (m_vsprings[i].m_Ks*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
+//			m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length())))
+//			*((a.position - b.position) / ((a.position - b.position).Length()) + a.force);
+//		
+//		b.force = -(m_vsprings[i].m_Ks*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
+//			m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length())))
+//			*((a.position - b.position) / ((a.position - b.position).Length()) + b.force);
+
+		
     }
 }
 
@@ -454,6 +504,10 @@ void JelloMesh::ResolveContacts(ParticleGrid& grid)
        vec3 normal = contact.m_normal; 
 
         // TODO
+
+	   p.position = p.position + contact.m_distance*normal;
+	   p.velocity += (2 * (-p.velocity)*normal)*normal;
+		  
     }
 }
 
@@ -465,14 +519,38 @@ void JelloMesh::ResolveCollisions(ParticleGrid& grid)
         Particle& pt = GetParticle(grid, result.m_p);
         vec3 normal = result.m_normal;
         float dist = result.m_distance;
-
+		
+		if (pt.velocity*normal < 0)
+		{
+			pt.force += g_structuralKs *(dist*normal) + g_structuralKd *(pt.velocity*normal)*normal;
+		}
         // TODO
 	}
 }
 
 bool JelloMesh::FloorIntersection(Particle& p, Intersection& intersection)
 {
-    // TODO
+	if (p.position.n[1] <= 0.01)
+
+	{
+
+		intersection.m_normal = vec3(0,1,0);
+		intersection.m_type = IntersectionType(COLLISION);
+		intersection.m_p = p.index;
+		intersection.m_distance = 0.001;
+		return true;
+	}
+   
+	if (p.position[1] < 0.01)
+	{
+		intersection.m_p = p.index;
+		intersection.m_type = IntersectionType(COLLISION);
+		intersection.m_distance = 0.01 - p.position[1];
+		intersection.m_normal = vec3(0, 1, 0);
+		
+		return true;
+	}
+	else
     return false;
 }
 
@@ -484,29 +562,100 @@ bool JelloMesh::CylinderIntersection(Particle& p, World::Cylinder* cylinder,
     vec3 cylinderAxis = cylinderEnd - cylinderStart;
     double cylinderRadius = cylinder->r; 
 
-    // TODO
-    return false;
+	if (p.position.n[1] <= -10.50)
+
+	{
+		result.m_normal = p.position;
+		result.m_type = IntersectionType(COLLISION);
+		result.m_p = p.index;
+		result.m_distance = 0.1;
+
+		return true;
+	}
+	
+	else
+		return false;
 }
 
 void JelloMesh::EulerIntegrate(double dt)
 
 
 {
-	int y=1, h=0.5, x=4, df=3.0;
-	double rk1(double y, double h, double x );
-	return y + h * df(x, y);
+	double halfdt = 0.5 * dt;
+	ParticleGrid target = m_vparticles;  // target is a copy!
+	ParticleGrid& source = m_vparticles;  // source is a ptr!
+
+										  // Step 1
+	ParticleGrid accum1 = m_vparticles;
+	for (int i = 0; i < m_rows + 1; i++)
+	{
+		for (int j = 0; j < m_cols + 1; j++)
+		{
+			for (int k = 0; k < m_stacks + 1; k++)
+			{
+				Particle& s = GetParticle(source, i, j, k);
+
+				Particle& k1 = GetParticle(accum1, i, j, k);
+				k1.force = halfdt * s.force * 1 / s.mass;
+				k1.velocity = halfdt * s.velocity;
+
+				Particle& t = GetParticle(target, i, j, k);
+				t.velocity = s.velocity + k1.force;
+				t.position = s.position + k1.velocity;
+			}
+		}
+	}
 }
 
-void JelloMesh::MidPointIntegrate(double dt)
+	void JelloMesh::MidPointIntegrate(double dt)
 
 {
-	int y = 1, h = 0.5, x = 4, df = 3.0;
-	double df(double x, double y);
-	double rk2(double y, double h, double x);
-	double k1 = df(x, y);
-	double h_half = h / 2.0;
-	return  y + h * df(x + h_half, y + (h_half * k1));
+		double halfdt = 0.5 * dt;
+		ParticleGrid target = m_vparticles;  // target is a copy!
+		ParticleGrid& source = m_vparticles;  // source is a ptr!
+
+	// Step 1
+		ParticleGrid accum1 = m_vparticles;
+		for (int i = 0; i < m_rows + 1; i++)
+		{
+			for (int j = 0; j < m_cols + 1; j++)
+			{
+				for (int k = 0; k < m_stacks + 1; k++)
+				{
+					Particle& s = GetParticle(source, i, j, k);
+
+					Particle& k1 = GetParticle(accum1, i, j, k);
+					k1.force = halfdt * s.force * 1 / s.mass;
+					k1.velocity = halfdt * s.velocity;
+
+					Particle& t = GetParticle(target, i, j, k);
+					t.velocity = s.velocity + k1.force;
+					t.position = s.position + k1.velocity;
+				}
+			}
+		}
+
+		ComputeForces(target);
+
+		double ahalf = 1 / 2.0;
+		for (int i = 0; i < m_rows + 1; i++)
+		{
+			for (int j = 0; j < m_cols + 1; j++)
+			{
+				for (int k = 0; k < m_stacks + 1; k++)
+				{
+					Particle& p = GetParticle(m_vparticles, i, j, k);
+					Particle& k1 = GetParticle(accum1, i, j, k);
+
+					p.velocity = p.velocity + ahalf * k1.force;
+
+					p.position = p.position + ahalf * k1.velocity;
+				}
+			}
+		}
+		
 }
+
 
 void JelloMesh::RK4Integrate(double dt)
 {
@@ -602,6 +751,7 @@ void JelloMesh::RK4Integrate(double dt)
     // Put it all together
     double asixth = 1/6.0;
     double athird = 1/3.0;
+	double ahalf = 1 / 2.0;
     for (int i = 0; i < m_rows+1; i++)
     {
         for (int j = 0; j < m_cols+1; j++)
