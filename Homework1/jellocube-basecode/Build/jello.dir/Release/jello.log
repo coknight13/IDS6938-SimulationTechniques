@@ -1,0 +1,19 @@
+﻿tinyxmld_STL.lib(tinyxml.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in camera.obj
+tinyxmld_STL.lib(tinyxml.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MTd_StaticDebug' doesn't match value 'MT_StaticRelease' in camera.obj
+tinyxmld_STL.lib(tinyxml.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
+tinyxmld_STL.lib(tinyxmlparser.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in camera.obj
+tinyxmld_STL.lib(tinyxmlparser.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MTd_StaticDebug' doesn't match value 'MT_StaticRelease' in camera.obj
+tinyxmld_STL.lib(tinyxmlerror.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in camera.obj
+tinyxmld_STL.lib(tinyxmlerror.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MTd_StaticDebug' doesn't match value 'MT_StaticRelease' in camera.obj
+libcpmtd.lib(stdthrow.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in camera.obj
+libcpmtd.lib(stdthrow.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MTd_StaticDebug' doesn't match value 'MT_StaticRelease' in camera.obj
+LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+tinyxmld_STL.lib(tinyxml.obj) : error LNK2019: unresolved external symbol __calloc_dbg referenced in function "char * __cdecl std::_Maklocstr<char>(char const *,char *,struct _Cvtvec const &)" (??$_Maklocstr@D@std@@YAPADPBDPADABU_Cvtvec@@@Z)
+tinyxmld_STL.lib(tinyxml.obj) : error LNK2019: unresolved external symbol __free_dbg referenced in function "private: void __thiscall std::_Yarn<char>::_Tidy(void)" (?_Tidy@?$_Yarn@D@std@@AAEXXZ)
+tinyxmld_STL.lib(tinyxmlparser.obj) : error LNK2001: unresolved external symbol __free_dbg
+tinyxmld_STL.lib(tinyxml.obj) : error LNK2019: unresolved external symbol __malloc_dbg referenced in function "public: static void * __cdecl std::_Crt_new_delete::operator new(unsigned int,struct std::nothrow_t const &)" (??2_Crt_new_delete@std@@SAPAXIABUnothrow_t@1@@Z)
+tinyxmld_STL.lib(tinyxmlparser.obj) : error LNK2001: unresolved external symbol __malloc_dbg
+tinyxmld_STL.lib(tinyxml.obj) : error LNK2019: unresolved external symbol __CrtDbgReportW referenced in function "void * __cdecl std::_Allocate(unsigned int,unsigned int,bool)" (?_Allocate@std@@YAPAXII_N@Z)
+tinyxmld_STL.lib(tinyxmlparser.obj) : error LNK2001: unresolved external symbol __CrtDbgReportW
+libcpmtd.lib(stdthrow.obj) : error LNK2001: unresolved external symbol __CrtDbgReportW
+C:\Users\Corey\Desktop\hello\Homework1a\IDS6938-SimulationTechniques\Homework1\jellocube-basecode\Build\Release\jello.exe : fatal error LNK1120: 4 unresolved externals
