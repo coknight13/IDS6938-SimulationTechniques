@@ -621,8 +621,8 @@ void JelloMesh::EulerIntegrate(double dt)
 			{
 				Particle& p = GetParticle(m_vparticles, i, j, k);
 
-				p.velocity = p.velocity + dt * p.position;
-				p.position = p.position + dt * p.velocity;
+				p.velocity = p.velocity + halfdt * p.force;
+				p.position = p.position + halfdt * p.velocity;
 			}
 		}
 	}
