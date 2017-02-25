@@ -3,14 +3,14 @@
 #include <algorithm>
 
 // TODO
-double JelloMesh::g_structuralKs = -150.0; 
-double JelloMesh::g_structuralKd = 100.0; 
-double JelloMesh::g_attachmentKs = 100.0;
-double JelloMesh::g_attachmentKd = -100.0;
-double JelloMesh::g_shearKs = 25.0;
-double JelloMesh::g_shearKd = 5.0;
-double JelloMesh::g_bendKs = 150.0;
-double JelloMesh::g_bendKd = 120.0;
+double JelloMesh::g_structuralKs = 150.0; 
+double JelloMesh::g_structuralKd = 0.0; 
+double JelloMesh::g_attachmentKs = 0.0;
+double JelloMesh::g_attachmentKd = 0.0;
+double JelloMesh::g_shearKs = 0.0;
+double JelloMesh::g_shearKd = 0.0;
+double JelloMesh::g_bendKs = 0.0;
+double JelloMesh::g_bendKd = 0.0;
 double JelloMesh::g_penaltyKs = 0.1;
 double JelloMesh::g_penaltyKd = 0.1;
 
@@ -470,7 +470,16 @@ void JelloMesh::ComputeForces(ParticleGrid& grid)
         Particle& a = GetParticle(grid, spring.m_p1);
         Particle& b = GetParticle(grid, spring.m_p2);
 		
+		vec3 diff = b.position - a.position;
+		double dist = diff.Length();
+		if (dist != 0) {
+			vec3 force = (m_vsprings[i].m_Ks*((b.position - a.position).Length() - m_vsprings[i].m_restLen) * (diff / dist)) -
+				(m_vsprings[i].m_Kd*(((b.velocity - a.velocity)*(b.position - a.position)) / ((b.position - a.position).Length())))
+				*(diff / dist);
 
+			a.force += force;
+			b.force += -force;   //  Newtons 3rd law
+		}
 //		a.force = (m_vsprings[i].m_Ks*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
 //			m_vsprings[i].m_Kd*(((a.velocity + b.velocity)*(a.position + b.position)) / ((a.position - b.position).Length())))
 //			*((a.position - b.position) / ((a.position - b.position).Length()) + a.force);
@@ -479,21 +488,28 @@ void JelloMesh::ComputeForces(ParticleGrid& grid)
 //		b.force = (((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length()))
 //			*(a.position - b.position) / ((a.position - b.position).Length());
 
+
 //Working Jello Cube Drop
-		a.force = m_vsprings[i].m_Ks*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length()))
-			*(a.position - b.position) / ((a.position - b.position).Length()) + a.force;
-		b.force = m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length()))
-			*(a.position - b.position) / ((a.position - b.position).Length()) + b.force;
+//		a.force = m_vsprings[i].m_Ks*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length()))
+//			*(a.position - b.position) / ((a.position - b.position).Length()) + a.force;
+//		b.force = m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length()))
+//			*(a.position - b.position) / ((a.position - b.position).Length()) + b.force;
 
 //Stuck in Space
 //		a.force = (m_vsprings[i].m_Ks*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
 //			m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length())))
 //			*((a.position - b.position) / ((a.position - b.position).Length()) + a.force);
-//		
+		
 //		b.force = -(m_vsprings[i].m_Kd*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
 //			m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length())))
 //			*((a.position - b.position) / ((a.position - b.position).Length()) + b.force);
 
+//		a.force = -(m_vsprings[i].m_Ks*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
+//			m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length())))
+//			*(a.position - b.position) / ((a.position - b.position).Length()) + a.force;
+//		b.force = (m_vsprings[i].m_Ks*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
+//			m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length())))
+//			*(a.position - b.position) / ((a.position - b.position).Length()) + b.force;
 		
     }
 }
@@ -506,11 +522,9 @@ void JelloMesh::ResolveContacts(ParticleGrid& grid)
        Particle& p = GetParticle(grid, contact.m_p);
        vec3 normal = contact.m_normal; 
 
-        // TODO
 
 	   p.position = p.position + contact.m_distance*normal;
-	   //p.velocity += (2 * (-p.velocity)*normal)*normal;
-	   p.velocity += (-p.velocity)*normal);
+	  p.velocity = (-p.velocity + contact.m_distance*normal)*.5;
 		  
     }
 }
@@ -526,9 +540,8 @@ void JelloMesh::ResolveCollisions(ParticleGrid& grid)
 		
 		if (pt.velocity*normal < 0)
 		{
-			pt.force += g_structuralKs *(dist*normal) + g_structuralKd *(pt.velocity*normal)*normal;
+			pt.force += (g_structuralKs *(dist*normal) + g_structuralKd *(pt.velocity*normal)*normal);
 		}
-        // TODO
 	}
 }
 
@@ -539,7 +552,7 @@ bool JelloMesh::FloorIntersection(Particle& p, Intersection& intersection)
 	{
 
 		intersection.m_normal = vec3(0,1,0);
-		intersection.m_type = IntersectionType(COLLISION);
+		intersection.m_type = JelloMesh::COLLISION;
 		intersection.m_p = p.index;
 		intersection.m_distance = 0.001;
 		return true;
@@ -548,7 +561,7 @@ bool JelloMesh::FloorIntersection(Particle& p, Intersection& intersection)
 	if (p.position[1] < 0.01)
 	{
 		intersection.m_p = p.index;
-		intersection.m_type = IntersectionType(COLLISION);
+		intersection.m_type = JelloMesh::CONTACT;
 		intersection.m_distance = 0.01 - p.position[1];
 		intersection.m_normal = vec3(0, 1, 0);
 		
@@ -566,11 +579,11 @@ bool JelloMesh::CylinderIntersection(Particle& p, World::Cylinder* cylinder,
     vec3 cylinderAxis = cylinderEnd - cylinderStart;
     double cylinderRadius = cylinder->r; 
 
-	if (p.position.n[1] <= -10.50)
+	if (p.position.n[1] <= 0.50)
 
 	{
 		result.m_normal = p.position;
-		result.m_type = IntersectionType(COLLISION);
+		result.m_type = JelloMesh::CONTACT;
 		result.m_p = p.index;
 		result.m_distance = 0.1;
 
@@ -641,7 +654,7 @@ void JelloMesh::EulerIntegrate(double dt)
 
 		ComputeForces(target);
 
-		double ahalf = 1 / 2.0;
+		double ahalf = 1.0 / 2.0;
 		for (int i = 0; i < m_rows + 1; i++)
 		{
 			for (int j = 0; j < m_cols + 1; j++)
