@@ -3,16 +3,16 @@
 #include <algorithm>
 
 // TODO
-double JelloMesh::g_structuralKs = 6500.0; 
-double JelloMesh::g_structuralKd = -100.0; 
+double JelloMesh::g_structuralKs = 3500.0; 
+double JelloMesh::g_structuralKd = 50.0; 
 double JelloMesh::g_attachmentKs = 3000.0;
 double JelloMesh::g_attachmentKd = 10.0;
-double JelloMesh::g_shearKs = 50.0;
+double JelloMesh::g_shearKs = 3500.0;
 double JelloMesh::g_shearKd = 10.0;
-double JelloMesh::g_bendKs = 1500.0;
-double JelloMesh::g_bendKd = 10.0;
-double JelloMesh::g_penaltyKs = 5000.1;
-double JelloMesh::g_penaltyKd = 55.1;
+double JelloMesh::g_bendKs = 3500.0;
+double JelloMesh::g_bendKd = 35.0;
+double JelloMesh::g_penaltyKs = 500.1;
+double JelloMesh::g_penaltyKd = 10.1;
 
 
 JelloMesh::JelloMesh() :     
@@ -479,43 +479,18 @@ void JelloMesh::ComputeForces(ParticleGrid& grid)
 		vec3 diff = b.position - a.position;
 		double dist = diff.Length();
 		if (dist != 0) {
-			vec3 force = (-(m_vsprings[i].m_Ks*(dist- m_vsprings[i].m_restLen)) +
-				(m_vsprings[i].m_Kd*(((b.velocity - a.velocity)*(b.position - a.position)) / (dist))))
+			vec3 force = (-(m_vsprings[i].m_Ks*(dist- m_vsprings[i].m_restLen) +
+				(m_vsprings[i].m_Kd*(((b.velocity - a.velocity)*(b.position - a.position))) / (dist))))
 				*(diff / dist);
 
 			a.force += -force;
 			b.force += force;   //  Newtons 3rd law
 		}
-//		a.force = (m_vsprings[i].m_Ks*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
-//			m_vsprings[i].m_Kd*(((a.velocity + b.velocity)*(a.position + b.position)) / ((a.position - b.position).Length())))
-//			*((a.position - b.position) / ((a.position - b.position).Length()) + a.force);
 
 //Jello Cube Explosion		
 //		b.force = (((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length()))
 //			*(a.position - b.position) / ((a.position - b.position).Length());
 
-
-//Working Jello Cube Drop
-//		a.force = m_vsprings[i].m_Ks*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length()))
-//			*(a.position - b.position) / ((a.position - b.position).Length()) + a.force;
-//		b.force = m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length()))
-//			*(a.position - b.position) / ((a.position - b.position).Length()) + b.force;
-
-//Stuck in Space
-//		a.force = (m_vsprings[i].m_Ks*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
-//			m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length())))
-//			*((a.position - b.position) / ((a.position - b.position).Length()) + a.force);
-		
-//		b.force = -(m_vsprings[i].m_Kd*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
-//			m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length())))
-//			*((a.position - b.position) / ((a.position - b.position).Length()) + b.force);
-
-//		a.force = -(m_vsprings[i].m_Ks*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
-//			m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length())))
-//			*(a.position - b.position) / ((a.position - b.position).Length()) + a.force;
-//		b.force = (m_vsprings[i].m_Ks*((a.position - b.position).Length() - m_vsprings[i].m_restLen) +
-//			m_vsprings[i].m_Kd*(((a.velocity - b.velocity)*(a.position - b.position)) / ((a.position - b.position).Length())))
-//			*(a.position - b.position) / ((a.position - b.position).Length()) + b.force;
 		
     }
 }
@@ -529,9 +504,8 @@ void JelloMesh::ResolveContacts(ParticleGrid& grid)
        vec3 normal = contact.m_normal; 
 
 	   p.position = p.position - (contact.m_distance*normal);
-	  //p.position = p.position + contact.m_distance*normal;
 	  p.force = (-p.force + contact.m_distance*normal);
-	  p.velocity = p.velocity - (2*(p.velocity * normal))*(normal*.75);
+	  p.velocity = p.velocity - (2*(p.velocity * normal))*(normal);
 	  ComputeForces(grid);
     }
 }
@@ -545,34 +519,33 @@ void JelloMesh::ResolveCollisions(ParticleGrid& grid)
         vec3 normal = result.m_normal;
         float dist = result.m_distance;
 		
-		pt.force -= ((g_penaltyKs *(dist*normal) + g_penaltyKd *(pt.velocity*normal)*normal) * 10);
-			//pt.position = pt.position*dist + normal;
-			pt.velocity = pt.velocity - (pt.velocity*2);
-			vec3 diff = -dist * normal;
-			pt.position = pt.position + diff;
+		pt.force -= ((g_penaltyKs *(dist*normal) + g_penaltyKd *(pt.velocity*normal)*normal));
+			vec3 diff = (-dist * normal)*1.8;
+			pt.position = (pt.position + diff)*1.2;
 	}
 }
 
 bool JelloMesh::FloorIntersection(Particle& p, Intersection& intersection)
 {
-	if (p.position.n[1] <= 0.10)
+   
+	if (p.position[1] < 0.1)
+	{
+		intersection.m_p = p.index;
+		intersection.m_type = JelloMesh::COLLISION;
+		intersection.m_distance = - p.position[1];
+		intersection.m_normal = vec3(0, 1, 0);
+		intersection.m_normal = intersection.m_normal.Normalize();
+		return true;
+	}
+
+	if (p.position.n[1] <= 0.1)
 
 	{
 
 		intersection.m_distance = p.position.n[1];    //thing you are checking on right above
 		intersection.m_p = p.index;
 		intersection.m_type = JelloMesh::CONTACT;
-		intersection.m_normal = vec3(0,1,0);  //for the normal
-		intersection.m_normal = intersection.m_normal.Normalize();
-		return true;
-	}
-   
-	if (p.position[1] < 0.0)
-	{
-		intersection.m_p = p.index;
-		intersection.m_type = JelloMesh::COLLISION;
-		intersection.m_distance = - p.position[1];
-		intersection.m_normal = vec3(0, 1, 0);
+		intersection.m_normal = vec3(0, 1, 0);  //for the normal
 		intersection.m_normal = intersection.m_normal.Normalize();
 		return true;
 	}
@@ -583,12 +556,23 @@ bool JelloMesh::FloorIntersection(Particle& p, Intersection& intersection)
 bool JelloMesh::CylinderIntersection(Particle& p, World::Cylinder* cylinder, 
                                  JelloMesh::Intersection& result)
 {
-    vec3 cylinderStart = cylinder->start;
-    vec3 cylinderEnd = cylinder->end;
-    vec3 cylinderAxis = cylinderEnd - cylinderStart;
+
+	
+	vec3 cylinderStart = cylinder->start;
+	vec3 cylinderEnd = cylinder->end;
+	vec3 cylinderAxis = cylinderEnd - cylinderStart;
+	double time = p.index;
+	vec3 point = cylinderStart + time * cylinderAxis;
+	vec3 normal = p.position - point;
+	double dist = normal.Length();
+	normal = normal.Normalize();
+	
+    
+   
+    
     double cylinderRadius = cylinder->r; 
 
-	if (p.position.n[1] <= 0.01)
+	if (dist < cylinderRadius)
 
 	{
 		result.m_normal = p.position;
