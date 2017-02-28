@@ -54,7 +54,7 @@ void Camera::draw()
    float m[16];
    m[0] = v[0]; m[4] = v[1]; m[8] = v[2];  m[12] = -Dot(eye, v); 
    m[1] = u[0]; m[5] = u[1]; m[9] = u[2];  m[13] = -Dot(eye, u); 
-   m[2] = n[0]; m[6] = n[1]; m[10] = n[2]; m[14] = -Dot(eye, n); 
+   m[2] = n[0]; m[6] = n[1]; m[10] = n[2]; m[14] = - Dot(eye, n); 
    m[3] = 0.0;  m[7] = 0.0;  m[11] = 0.0;  m[15] = 1.0;
    glMatrixMode(GL_MODELVIEW);
    glLoadMatrixf(m); 
