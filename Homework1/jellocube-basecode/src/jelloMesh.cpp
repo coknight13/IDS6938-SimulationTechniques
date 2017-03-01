@@ -1500,7 +1500,6 @@ void JelloMesh::ComputeForces(ParticleGrid& grid)
 		{
 
 			for (int k = 0; k < m_stacks + 1; k++)
-
 			{
 
 				Particle& p = GetParticle(grid, i, j, k);
@@ -1526,7 +1525,7 @@ void JelloMesh::ComputeForces(ParticleGrid& grid)
 				*(diff / dist);
 
 			a.force += -force;
-			b.force += force;   //  Newtons 3rd law
+			b.force += -force;   //  Newtons 3rd law
 		}
 
 		//Jello Cube Explosion		
