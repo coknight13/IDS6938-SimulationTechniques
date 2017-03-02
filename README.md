@@ -35,3 +35,32 @@ with the Euler and Midpoint methods.
 The most accurate method is the RK4 approach.  The RK4 Method incorporates Euler, Midpoint, and additional measurement point to significantly reduce the error and 
 decay in accuracy as realized in the previous methods.  This approach takes measurements at the full, half, third, and sixth of a step.  This level of accuracy allows for changes in vector 
 direction to be identified faster than the Euler, and Midpoint methods which in turn produce more accurate results.
+
+Part 3: Written Questions (10 pts).
+
+What is the effect of the Ks and Kd parameters on the jello?
+Both the Ks and Kd parameters adjust the internal forces associated with the integrity of the Jello Cube.  The Ks parameter adjusts the structural strength of the Jello Cube.
+This value will adjust how much "give" is associated with the structural springs.  If these values are adjusted to high, the stress will be to great and the Jello Cube will destabilize.
+If the values are too low the structural integrity of the Cube will nto be maintained and it will collapse on itself.  Kd, adjusts the internal dampening forces of the Jello Cube.
+These forces are applied to reduce the shock applied across the cube when it makes contact with another object.
+
+What are the benefits and the drawbacks of the collision system used here? What are some different ways in which it could be improved? .
+The benefit of the collision system is a variety of parameters can be adjusted to "tune" the system to respond to a variety of variables.  This approach allows for internal forces associated
+with the Jello Cube to be adjusted.  However the drawback of the collision system is each parameter can be adjusted to a point where it has a negative impact on another
+"tuned" force.  
+
+What are some example systems you could model with Mass-spring simulations? Explain how you would you construct the model.
+
+An example system that can be modeled using a Mass-spring simulation is a missile container radio antenna.  The antenna has sensitive components housed above the spring.
+the contents of the antenna would be modeled as a solid structure supported by a pole mounted on a spring hinge.  As the antenna makes contact with other objects (trees, ect.)
+The force applied to the components within the solid housing can be measured.  Maximum impact tolerances before component failure can be identified using this method.  
+
+Does the jello behave realistically? What integration method did you choose to make the Jello stable?
+I chose the RK4 method to stabilize the Jello cube.  This method provided a high h sample rate which allowed for an increased amount of structural impact calculations.  These
+additional calculations allowed the Cube to maintain it's stability through multiple simulations.
+
+How would you model and simulate water (in terms of a continuous simulation)?
+
+Water would be modeled using a 1 x 1 wire mesh.  The particles on the wire mesh would have multiple bend and structural springs between them.  The Ks assocated with the
+water structure would be low and the Kd would be high.  The Ks is low as there isn't a structure to maintain as water is formless.  The Kd is high as the impact that external objects
+have with the water is immediately dampened upon contact.
