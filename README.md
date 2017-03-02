@@ -64,3 +64,10 @@ How would you model and simulate water (in terms of a continuous simulation)?
 Water would be modeled using a 1 x 1 wire mesh.  The particles on the wire mesh would have multiple bend and structural springs between them.  The Ks assocated with the
 water structure would be low and the Kd would be high.  The Ks is low as there isn't a structure to maintain as water is formless.  The Kd is high as the impact that external objects
 have with the water is immediately dampened upon contact.
+
+Extra Credit 
+
+I Created an interaction with the Sphere. and I've posted a video of my project file to Youtube.  You can access the video by using the following URL.
+
+https://youtu.be/8NPwLkph1V8
+
