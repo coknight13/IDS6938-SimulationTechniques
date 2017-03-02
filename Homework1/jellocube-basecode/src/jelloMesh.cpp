@@ -1419,9 +1419,7 @@ void JelloMesh::Update(double dt, const World& world, const vec3& externalForces
 
 
 	case EULER: EulerIntegrate(dt); break;
-
 	case MIDPOINT: MidPointIntegrate(dt); break;
-
 	case RK4: RK4Integrate(dt); break;
 
 
@@ -1481,6 +1479,17 @@ void JelloMesh::CheckForCollisions(ParticleGrid& grid, const World& world)
 						else if (intersection.m_type == CONTACT)
 							m_vcontacts.push_back(intersection);
 					}
+				
+					else if (world.m_shapes[i]->GetType() == World::SPHERE &&
+						SphereIntersection(p, (World::Sphere*) world.m_shapes[i], intersection))
+					{
+
+						if (intersection.m_type == COLLISION)
+							m_vcollisions.push_back(intersection);
+						else if (intersection.m_type == CONTACT)
+							m_vcontacts.push_back(intersection);
+					}
+				
 				}
 			}
 		}
@@ -1525,7 +1534,7 @@ void JelloMesh::ComputeForces(ParticleGrid& grid)
 				*(diff / dist);
 
 			a.force += -force;
-			b.force += -force;   //  Newtons 3rd law
+			b.force += force;   //  Newtons 3rd law
 		}
 
 		//Jello Cube Explosion		
@@ -1578,9 +1587,7 @@ void JelloMesh::ResolveCollisions(ParticleGrid& grid)
 		vec3 normal = result.m_normal;
 		float dist = result.m_distance;
 		pt.force -= ((g_penaltyKs *(dist*normal) + g_penaltyKd *(pt.velocity*normal)*normal) * .7);
-
 		//pt.position = pt.position*dist + normal;
-
 		pt.velocity = pt.velocity - (pt.velocity * 2);
 		vec3 diff = -dist * normal;
 		pt.position = pt.position + diff;
@@ -1668,6 +1675,45 @@ bool JelloMesh::CylinderIntersection(Particle& p, World::Cylinder* cylinder,
 		return false;
 
 }
+
+bool JelloMesh::SphereIntersection (Particle& p, World::Sphere* sphere,
+
+	JelloMesh::Intersection& result)
+
+{
+	vec3 center = sphere->pos;
+	double sphereRadius = sphere->r;
+	vec3 normal = p.position - center;
+	normal = normal.Normalize();
+
+if ((p.position - center).Length() < sphereRadius)
+
+	{
+
+		result.m_normal = vec3(0, 1, 0);
+		result.m_type = JelloMesh::CONTACT;
+		result.m_p = p.index;
+		result.m_distance = sphereRadius * 10;
+		result.m_normal = result.m_normal.Normalize();
+		return true;
+	}
+
+else if ((p.position - center).Length() < sphereRadius + .1  && normal.Length()  > sphereRadius + .05)
+
+	{
+
+		result.m_normal = vec3(0, 1, 0);
+		result.m_type = JelloMesh::COLLISION;
+		result.m_p = p.index;
+		result.m_distance = sphereRadius - normal.Length() * .4;
+		result.m_normal = result.m_normal.Normalize();
+		return true;
+	}
+
+	return false;
+
+}
+
 
 void JelloMesh::EulerIntegrate(double dt)
 
