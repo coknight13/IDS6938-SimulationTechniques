@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Corey\Desktop\hello\Homework1a\IDS6938-SimulationTechniques\Discrete3\markov.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Corey\Desktop\hello\Homework1a\IDS6938-SimulationTechniques\Discrete3\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Corey\Desktop\hello\Homework1a\IDS6938-SimulationTechniques\Discrete3\markov.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Corey\Desktop\hello\Homework1a\IDS6938-SimulationTechniques\Discrete3\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{BCCABC3A-D1DA-3F20-BD94-5DE1CF2E241C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{F671742D-36B6-38C8-B8E6-03CCDA4988F9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

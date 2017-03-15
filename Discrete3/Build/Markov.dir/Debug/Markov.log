@@ -1,0 +1,9 @@
+﻿  Building Custom Rule C:/Users/Corey/Desktop/hello/Homework1a/IDS6938-SimulationTechniques/Discrete3/CMakeLists.txt
+  CMake does not need to re-run because C:\Users\Corey\Desktop\hello\Homework1a\IDS6938-SimulationTechniques\Discrete3\Build\CMakeFiles\generate.stamp is up-to-date.
+  markov.cpp
+C:\Users\Corey\Desktop\hello\Homework1a\IDS6938-SimulationTechniques\Discrete3\markov.cpp(49): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Corey\Desktop\hello\Homework1a\IDS6938-SimulationTechniques\Discrete3\markov.cpp(129): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+C:\Users\Corey\Desktop\hello\Homework1a\IDS6938-SimulationTechniques\Discrete3\main.cpp(27): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  Markov.vcxproj -> C:\Users\Corey\Desktop\hello\Homework1a\IDS6938-SimulationTechniques\Discrete3\Build\Debug\Markov.exe
