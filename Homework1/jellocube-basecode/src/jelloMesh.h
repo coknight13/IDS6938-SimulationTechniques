@@ -79,7 +79,10 @@ protected:
 	virtual void ResolveContacts(ParticleGrid& grid);
     virtual bool FloorIntersection(Particle& p, Intersection& intersection);
     virtual bool CylinderIntersection(Particle& p, World::Cylinder* cylinder, Intersection& intersection);
+<<<<<<< HEAD
 	virtual bool SphereIntersection(Particle& p, World::Sphere * sphere, Intersection& intersection);
+=======
+>>>>>>> 851056092e8f9d57fee634149c911d4cc0bbfbf9
 
     virtual void ComputeForces(ParticleGrid& grid);
 	virtual void EulerIntegrate(double dt);

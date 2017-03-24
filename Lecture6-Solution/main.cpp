@@ -13,8 +13,12 @@ Compute the dy/dx
 */
 double df(double x, double y)            //function for defining dy/dx
 {
+<<<<<<< HEAD
 	//return y + (1 / 2) * ((2 * x) - exp(x / 2)*sin(5 * x) - 5 * exp(x / 2)*cos(5 * x));
 	return y - (1 / 2)*exp(x / 2)*sin(5 * x) + 5 * exp(x / 2)*cos(5 * x);
+=======
+    return y - (1 / 2)*exp(x / 2)*sin(5 * x) + 5 * exp(x / 2)*cos(5 * x);
+>>>>>>> 851056092e8f9d57fee634149c911d4cc0bbfbf9
 }
 
 
@@ -80,9 +84,15 @@ std::string toString(double x, double y_euler, double y_midpoint, double y_RK4, 
 	out << std::setprecision(presision) << y_midpoint << "\t";
 	out << std::setprecision(presision) << y_RK4 << "\t";
 	out << std::setprecision(presision) << y_exact << "\t";
+<<<<<<< HEAD
 	out << std::setprecision(3) << error(exact(x), y_euler) << "%\t";
 	out << std::setprecision(3) << error(exact(x), y_midpoint) << "%\t";
 	out << std::setprecision(3) << error(exact(x), y_RK4)<<"%";
+=======
+	out << std::setprecision(5) << error(exact(x), y_euler) << "%\t";
+	out << std::setprecision(5) << error(exact(x), y_midpoint) << "%\t";
+	out << std::setprecision(5) << error(exact(x), y_RK4)<<"%";
+>>>>>>> 851056092e8f9d57fee634149c911d4cc0bbfbf9
 	
 	return   out.str();
 }
@@ -109,7 +119,11 @@ int main()
 	//intial values
 	std::cout<< toString(x, y_euler, y_midpoint, y_RK4, exact(x), 10) << std::endl;
 
+<<<<<<< HEAD
     for (int i = 0; i < 100; i++)
+=======
+    for (int i = 0; i < 50; i++)
+>>>>>>> 851056092e8f9d57fee634149c911d4cc0bbfbf9
     {
 		y_euler = rk1(y_euler,h,x);  //caculate y_{i+1}
 		y_midpoint = rk2(y_midpoint, h, x);  //caculate y_{i+1}
