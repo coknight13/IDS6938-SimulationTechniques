@@ -1,5 +1,5 @@
 ﻿  Building Custom Rule C:/Users/Corey/Desktop/hello/Homework1a/IDS6938-SimulationTechniques/Discrete2/CMakeLists.txt
   CMake does not need to re-run because C:\Users\Corey\Desktop\hello\Homework1a\IDS6938-SimulationTechniques\Discrete2\Build\CMakeFiles\generate.stamp is up-to-date.
   random.cpp
-C:\Users\Corey\Desktop\hello\Homework1a\IDS6938-SimulationTechniques\Discrete2\random.cpp(53): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Corey\Desktop\hello\Homework1a\IDS6938-SimulationTechniques\Discrete2\random.cpp(57): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   Random.vcxproj -> C:\Users\Corey\Desktop\hello\Homework1a\IDS6938-SimulationTechniques\Discrete2\Build\Debug\Random.exe
