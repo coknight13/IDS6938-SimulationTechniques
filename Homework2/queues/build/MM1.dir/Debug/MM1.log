@@ -1,0 +1,9 @@
+﻿  Building Custom Rule C:/Users/Corey/Desktop/hello/Homework 2/IDS6938-SimulationTechniques/Homework2/queues/CMakeLists.txt
+  CMake does not need to re-run because C:\Users\Corey\Desktop\hello\Homework 2\IDS6938-SimulationTechniques\Homework2\queues\build\CMakeFiles\generate.stamp is up-to-date.
+  main.cpp
+c:\users\corey\desktop\hello\homework 2\ids6938-simulationtechniques\homework2\queues\mm1_queue.h(154): warning C4129: '%': unrecognized character escape sequence
+  mm1_queue.cpp
+c:\users\corey\desktop\hello\homework 2\ids6938-simulationtechniques\homework2\queues\mm1_queue.h(154): warning C4129: '%': unrecognized character escape sequence
+C:\Users\Corey\Desktop\hello\Homework 2\IDS6938-SimulationTechniques\Homework2\queues\mm1_queue.cpp(127): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  MM1.vcxproj -> C:\Users\Corey\Desktop\hello\Homework 2\IDS6938-SimulationTechniques\Homework2\queues\build\Debug\MM1.exe
