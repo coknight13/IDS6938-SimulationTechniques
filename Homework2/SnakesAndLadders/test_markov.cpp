@@ -25,6 +25,7 @@ int main(){
 	
    // TODO add Markov vector - Matrix multiplication
 
+	//Myvec.transpose() * Matrix;
 
 	std::cout <<  v << std::endl;
 	//myfile << v << std::endl;  //this is just a sample, becareful how you print to file so you can mine useful stats
