@@ -13,6 +13,7 @@
 #include "sobol.hpp"
 
 # define DIM_MAX 2
+///kkk
 
 int dim_num = 1;
 float *r;

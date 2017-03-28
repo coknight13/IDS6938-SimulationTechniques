@@ -110,7 +110,7 @@
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedService]]></ItemName>
+						<ItemName><![CDATA[Gate_Agent]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -120,7 +120,7 @@
 					<TargetEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedWait]]></ItemName>
+						<ItemName><![CDATA[Lobby]]></ItemName>
 					</TargetEmbeddedObjectReference>
 					<TargetConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -143,7 +143,7 @@
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedService1]]></ItemName>
+						<ItemName><![CDATA[Security_Check1]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -176,7 +176,7 @@
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedService2]]></ItemName>
+						<ItemName><![CDATA[Security_Check2]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -209,7 +209,7 @@
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedService3]]></ItemName>
+						<ItemName><![CDATA[Security_Check3]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -252,7 +252,7 @@
 					<TargetEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedService1]]></ItemName>
+						<ItemName><![CDATA[Security_Check1]]></ItemName>
 					</TargetEmbeddedObjectReference>
 					<TargetConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -275,7 +275,7 @@
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedService4]]></ItemName>
+						<ItemName><![CDATA[boarding]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -318,7 +318,7 @@
 					<TargetEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedService4]]></ItemName>
+						<ItemName><![CDATA[boarding]]></ItemName>
 					</TargetEmbeddedObjectReference>
 					<TargetConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -341,7 +341,7 @@
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedService2]]></ItemName>
+						<ItemName><![CDATA[Security_Check2]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -374,7 +374,7 @@
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedService3]]></ItemName>
+						<ItemName><![CDATA[Security_Check3]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -407,7 +407,7 @@
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedWait]]></ItemName>
+						<ItemName><![CDATA[Lobby]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -442,7 +442,7 @@
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedSelectOutput]]></ItemName>
+						<ItemName><![CDATA[routing]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -452,7 +452,7 @@
 					<TargetEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedService]]></ItemName>
+						<ItemName><![CDATA[Gate_Agent]]></ItemName>
 					</TargetEmbeddedObjectReference>
 					<TargetConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -475,7 +475,7 @@
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedSelectOutput]]></ItemName>
+						<ItemName><![CDATA[routing]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -508,7 +508,7 @@
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedSelectOutput]]></ItemName>
+						<ItemName><![CDATA[routing]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -541,7 +541,7 @@
 					<SourceEmbeddedObjectReference>
 						<PackageName><![CDATA[option_b]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
-						<ItemName><![CDATA[pedSelectOutput]]></ItemName>
+						<ItemName><![CDATA[routing]]></ItemName>
 					</SourceEmbeddedObjectReference>
 					<SourceConnectableItemReference>
 						<PackageName><![CDATA[com.anylogic.libraries.pedestrian]]></PackageName>
@@ -809,7 +809,7 @@
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1490487211522</Id>
-					<Name><![CDATA[pedWait]]></Name>
+					<Name><![CDATA[Lobby]]></Name>
 					<X>130</X><Y>220</Y>
 					<Label><X>-20</X><Y>-25</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -934,7 +934,7 @@
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1490487221052</Id>
-					<Name><![CDATA[pedService]]></Name>
+					<Name><![CDATA[Gate_Agent]]></Name>
 					<X>220</X><Y>220</Y>
 					<Label><X>-30</X><Y>-25</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1410,7 +1410,7 @@
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1490487304988</Id>
-					<Name><![CDATA[pedService1]]></Name>
+					<Name><![CDATA[Security_Check1]]></Name>
 					<X>590</X><Y>180</Y>
 					<Label><X>-30</X><Y>-25</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1523,7 +1523,7 @@
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1490487313667</Id>
-					<Name><![CDATA[pedService2]]></Name>
+					<Name><![CDATA[Security_Check2]]></Name>
 					<X>580</X><Y>270</Y>
 					<Label><X>-30</X><Y>-25</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1636,7 +1636,7 @@
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1490487320065</Id>
-					<Name><![CDATA[pedService3]]></Name>
+					<Name><![CDATA[Security_Check3]]></Name>
 					<X>600</X><Y>370</Y>
 					<Label><X>-30</X><Y>-25</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1870,7 +1870,7 @@
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1490487366323</Id>
-					<Name><![CDATA[pedService4]]></Name>
+					<Name><![CDATA[boarding]]></Name>
 					<X>800</X><Y>230</Y>
 					<Label><X>-30</X><Y>-25</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -2050,7 +2050,7 @@
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1490489370028</Id>
-					<Name><![CDATA[pedSelectOutput]]></Name>
+					<Name><![CDATA[routing]]></Name>
 					<X>310</X><Y>230</Y>
 					<Label><X>-55</X><Y>-35</Y></Label>
 					<PublicFlag>false</PublicFlag>
