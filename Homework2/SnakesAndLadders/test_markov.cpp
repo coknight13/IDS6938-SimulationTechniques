@@ -10,9 +10,10 @@
 #include "markov.h"
 #include "TransitionMatrix.h"
 
-int main(){
+int main() {
 
 	SetTransitionMatrix();
+	setGameMatrix();
 
 	//Output Vector
 	v.setZero();
@@ -22,13 +23,15 @@ int main(){
 	std::ofstream myfile;
 	myfile.open("markov_results.txt");
 
+
+	// TODO add Markov vector - Matrix multiplication
+	for (int i = 0; i < 101; i++) {
+
+	v = v.transpose() * TransitionMatrix;
+	std::cout << v << std::endl; //this is just a sample, becareful how you print to file so you can mine useful stats
+}
+
 	
-   // TODO add Markov vector - Matrix multiplication
-
-	//Myvec.transpose() * Matrix;
-
-	std::cout <<  v << std::endl;
-	//myfile << v << std::endl;  //this is just a sample, becareful how you print to file so you can mine useful stats
 	
 	myfile.close();
 

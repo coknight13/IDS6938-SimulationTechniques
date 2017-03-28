@@ -17,6 +17,7 @@
 int main() {
 
 	SetTransitionMatrix();
+	setGameMatrix();
 	// Print Results to File
 	std::ofstream myfile;
 	myfile.open("markov_results.txt");
@@ -32,7 +33,7 @@ int main() {
 	for (unsigned int i = 0; i < N; ++i) {
 		
 		//TODO (add DTMC, and histogram lines.)
-		discreteMC = DTMC (TransitionMatrix,9,0);
+		discreteMC = DTMC (TransitionMatrix,ROLLS,start);
 		++hist[std::round(discreteMC.back())];
 
 		// Code if you wanted to print out results at each step
