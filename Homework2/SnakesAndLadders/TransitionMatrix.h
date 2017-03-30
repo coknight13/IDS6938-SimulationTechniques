@@ -3,7 +3,7 @@ Eigen::MatrixXf TransitionMatrix(size, size);
 Eigen::MatrixXf GameMatrix(size, size);
 Eigen::VectorXf v(size);
 
-unsigned int ROLLS = 1; //TODO
+unsigned int ROLLS = 2; //TODO
 
 double prob = 1.0/6.0;  //TODO
 
