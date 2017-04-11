@@ -3,7 +3,7 @@ Eigen::MatrixXf TransitionMatrix(size, size);
 Eigen::MatrixXf GameMatrix(size, size);
 Eigen::VectorXf v(size);
 
-unsigned int ROLLS = 2; //TODO
+unsigned int ROLLS = 100; //TODO
 
 double prob = 1.0/6.0;  //TODO
 
@@ -57,7 +57,7 @@ void SetTransitionMatrix()
 
 void setGameMatrix()
 {
-
+	GameMatrix.setZero();
 	GameMatrix = TransitionMatrix;
 
 	for (int i = 0; i < size; i++)
