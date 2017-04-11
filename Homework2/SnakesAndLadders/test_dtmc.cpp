@@ -20,12 +20,12 @@ int main() {
 	setGameMatrix();
 	// Print Results to File
 	std::ofstream myfile;
-	myfile.open("markov_results.txt");
+	myfile.open("dtmc_results.txt");
 
 	int start = 0;
 
 	//simulate discrete time Markov Chain
-	unsigned int N = 2;
+	unsigned int N = 1;
 	std::map<int, int> hist;
 	
 	std::vector<int> discreteMC;
@@ -33,14 +33,20 @@ int main() {
 	for (unsigned int i = 0; i < N; ++i) {
 		
 		//TODO (add DTMC, and histogram lines.)
-		discreteMC = DTMC (TransitionMatrix,ROLLS,start);
+		discreteMC = DTMC (GameMatrix,ROLLS,start);
 		++hist[std::round(discreteMC.back())];
-
+		int counter = 0;
 		// Code if you wanted to print out results at each step
-		for (auto elem : discreteMC)
+		for (auto elem : discreteMC) {
+			if (elem < 100) counter++;
 			std::cout << elem << std::endl;
-		std::cout << "*********" << i << std::endl;
-		
+			std::cout << counter << std::endl;
+			myfile << elem << std::endl;
+			myfile << counter << std::endl;
+			
+		}
+		std::cout << "****New Game*****" << i << std::endl;
+		myfile << "******New Game*******" << std::endl;
 	}
 	//Returns an array discreteMC with the states at each step of the discrete-time Markov Chain
 	//The number of transitions is given by steps. The initial state is given by start 
