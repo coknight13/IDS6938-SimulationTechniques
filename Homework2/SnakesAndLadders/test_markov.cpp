@@ -38,7 +38,7 @@ int main() {
 	v.setZero();
 	v(0) = 1.0;
 
-	for (int i = 0; i < 101; i++) {
+	for (int i = 0; i < 100; i++) {
 		v = v.transpose() * GameMatrix;
 		for (int j = 0; j < size - 1; j++)
 		myfile2 << v(j) << std::endl;

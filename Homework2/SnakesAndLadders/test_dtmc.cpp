@@ -25,7 +25,7 @@ int main() {
 	int start = 0;
 
 	//simulate discrete time Markov Chain
-	unsigned int N = 1;
+	unsigned int N = 100;
 	std::map<int, int> hist;
 	
 	std::vector<int> discreteMC;
@@ -33,7 +33,7 @@ int main() {
 	for (unsigned int i = 0; i < N; ++i) {
 		
 		//TODO (add DTMC, and histogram lines.)
-		discreteMC = DTMC (GameMatrix,ROLLS,start);
+		discreteMC = DTMC(TransitionMatrix,ROLLS,start);
 		++hist[std::round(discreteMC.back())];
 		int counter = 0;
 		// Code if you wanted to print out results at each step

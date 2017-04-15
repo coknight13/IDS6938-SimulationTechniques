@@ -3,7 +3,7 @@ Eigen::MatrixXf TransitionMatrix(size, size);
 Eigen::MatrixXf GameMatrix(size, size);
 Eigen::VectorXf v(size);
 
-unsigned int ROLLS = 100; //TODO
+unsigned int ROLLS = 2; //TODO
 
 double prob = 1.0/6.0;  //TODO
 
@@ -29,6 +29,97 @@ void SetTransitionMatrix()
 		TransitionMatrix(i, i + 4) = prob;
 		TransitionMatrix(i, i + 5) = prob;
 		TransitionMatrix(i, i + 6) = prob;
+	
+		if (TransitionMatrix(i, 3) > 0)
+		{
+			TransitionMatrix(i, 3) = TransitionMatrix(i, 19);
+			TransitionMatrix(i, 3) = 0;
+		}
+		if (TransitionMatrix(i, 15) > 0)
+		{
+			TransitionMatrix(i, 15) = TransitionMatrix(i, 37);
+			TransitionMatrix(i, 15) = 0;
+		}
+		if (TransitionMatrix(i, 22) > 0)
+		{
+			TransitionMatrix(i, 22) = TransitionMatrix(i, 42);
+			TransitionMatrix(i, 22) = 0;
+		}
+		if (TransitionMatrix(i, 25) > 0)
+		{
+			TransitionMatrix(i, 25) = TransitionMatrix(i, 64);
+			TransitionMatrix(i, 25) = 0;
+		}
+		if (TransitionMatrix(i, 41) > 0)
+		{
+			TransitionMatrix(i, 41) = TransitionMatrix(i, 73);
+			TransitionMatrix(i, 41) = 0;
+		}
+		if (TransitionMatrix(i, 53) > 0)
+		{
+			TransitionMatrix(i, 53) = TransitionMatrix(i, 74);
+			TransitionMatrix(i, 53) = 0;
+		}
+		if (TransitionMatrix(i, 63) > 0)
+		{
+			TransitionMatrix(i, 63) = TransitionMatrix(i, 86);
+			TransitionMatrix(i, 63) = 0;
+		}
+		if (TransitionMatrix(i, 76) > 0)
+		{
+			TransitionMatrix(i, 76) = TransitionMatrix(i, 91);
+			TransitionMatrix(i, 76) = 0;
+		}
+		if (TransitionMatrix(i, 84) > 0)
+		{
+			TransitionMatrix(i, 84) = TransitionMatrix(i, 98);
+			TransitionMatrix(i, 84) = 0;
+		}
+		if (TransitionMatrix(i, 11) > 0)
+		{
+			TransitionMatrix(i, 11) = TransitionMatrix(i, 7);
+			TransitionMatrix(i, 11) = 0;
+		}
+		if (TransitionMatrix(i, 18) > 0)
+		{
+			TransitionMatrix(i, 18) = TransitionMatrix(i, 13);
+			TransitionMatrix(i, 18) = 0;
+		}
+		if (TransitionMatrix(i, 28) > 0)
+		{
+			TransitionMatrix(i, 28) = TransitionMatrix(i, 12);
+			TransitionMatrix(i, 28) = 0;
+		}
+		if (TransitionMatrix(i, 36) > 0)
+		{
+			TransitionMatrix(i, 36) = TransitionMatrix(i, 34);
+			TransitionMatrix(i, 36) = 0;
+		}
+		if (TransitionMatrix(i, 77) > 0)
+		{
+			TransitionMatrix(i, 77) = TransitionMatrix(i, 16);
+			TransitionMatrix(i, 77) = 0;
+		}
+		if (TransitionMatrix(i, 47) > 0)
+		{
+			TransitionMatrix(i, 47) = TransitionMatrix(i, 26);
+			TransitionMatrix(i, 26) = 0;
+		}
+		if (TransitionMatrix(i, 83) > 0)
+		{
+			TransitionMatrix(i, 83) = TransitionMatrix(i, 39);
+			TransitionMatrix(i, 83) = 0;
+		}
+		if (TransitionMatrix(i, 92) > 0)
+		{
+			TransitionMatrix(i, 92) = TransitionMatrix(i, 75);
+			TransitionMatrix(i, 92) = 0;
+		}
+		if (TransitionMatrix(i, 99) > 0)
+		{
+			TransitionMatrix(i, 99) = TransitionMatrix(i, 70);
+			TransitionMatrix(i, 99) = 0;
+		}
 	}
 
 	TransitionMatrix(95, 95) = prob;
@@ -52,7 +143,8 @@ void SetTransitionMatrix()
 	TransitionMatrix(99, 99) = prob;
 	TransitionMatrix(99, 100) = 1;
 	TransitionMatrix(100, 100) = 1;
-	//std::cout << TransitionMatrix << std::endl;
+ 
+
 }
 
 void setGameMatrix()
@@ -60,106 +152,9 @@ void setGameMatrix()
 	GameMatrix.setZero();
 	GameMatrix = TransitionMatrix;
 
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < size-1; i++)
 	{
-		if (GameMatrix(i, 3) > 0)
-		{
-			GameMatrix(i, 3) = GameMatrix(i, 19);
-			GameMatrix(i, 3) = 0;
-		}
-		if (GameMatrix(i, 15) > 0)
-		{
-			GameMatrix(i, 15) = GameMatrix(i, 37);
-			GameMatrix(i, 15) = 0;
-		}
-		if (GameMatrix(i, 22) > 0)
-		{
-			GameMatrix(i, 22) = GameMatrix(i, 42);
-			GameMatrix(i, 22) = 0;
-		}
-		if (GameMatrix(i, 25) > 0)
-		{
-			GameMatrix(i, 25) = GameMatrix(i, 64);
-			GameMatrix(i, 25) = 0;
-		}
-		if (GameMatrix(i, 41) > 0)
-		{
-			GameMatrix(i, 41) = GameMatrix(i, 73);
-			GameMatrix(i, 41) = 0;
-		}
-		if (GameMatrix(i, 53) > 0)
-		{
-			GameMatrix(i, 53) = GameMatrix(i, 74);
-			GameMatrix(i, 53) = 0;
-		}
-		if (GameMatrix(i, 63) > 0)
-		{
-			GameMatrix(i, 63) = GameMatrix(i, 86);
-			GameMatrix(i, 63) = 0;
-		}
-		if (GameMatrix(i, 76) > 0)
-		{
-			GameMatrix(i, 76) = GameMatrix(i, 91);
-			GameMatrix(i, 76) = 0;
-		}
-		if (GameMatrix(i, 84) > 0)
-		{
-			GameMatrix(i, 84) = GameMatrix(i, 98);
-			GameMatrix(i, 84) = 0;
-		}
-		if (GameMatrix(i, 11) > 0)
-		{
-			GameMatrix(i, 11) = GameMatrix(i, 7);
-			GameMatrix(i, 11) = 0;
-		}
-		if (GameMatrix(i, 18) > 0)
-		{
-			GameMatrix(i, 18) = GameMatrix(i, 13);
-			GameMatrix(i, 18) = 0;
-		}
-		if (GameMatrix(i, 28) > 0)
-		{
-			GameMatrix(i, 28) = GameMatrix(i, 12);
-			GameMatrix(i, 28) = 0;
-		}
-		if (GameMatrix(i, 36) > 0)
-		{
-			GameMatrix(i, 36) = GameMatrix(i, 34);
-			GameMatrix(i, 36) = 0;
-		}
-		if (GameMatrix(i, 77) > 0)
-		{
-			GameMatrix(i, 77) = GameMatrix(i, 16);
-			GameMatrix(i, 77) = 0;
-		}
-		if (GameMatrix(i, 47) > 0)
-		{
-			GameMatrix(i, 47) = GameMatrix(i, 26);
-			GameMatrix(i, 26) = 0;
-		}
-		if (GameMatrix(i, 83) > 0)
-		{
-			GameMatrix(i, 83) = GameMatrix(i, 39);
-			GameMatrix(i, 83) = 0;
-		}
-		if (GameMatrix(i, 92) > 0)
-		{
-			GameMatrix(i, 92) = GameMatrix(i, 75);
-			GameMatrix(i, 92) = 0;
-		}
-		if (GameMatrix(i, 99) > 0)
-		{
-			GameMatrix(i, 99) = GameMatrix(i, 70);
-			GameMatrix(i, 99) = 0;
-		}
-
-
-
-
-
-
-
-
+		
 
 	}
 }
