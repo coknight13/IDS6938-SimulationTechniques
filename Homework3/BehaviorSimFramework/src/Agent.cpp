@@ -310,10 +310,11 @@ vec2 SIMAgent::Seek()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
-
+	v0 = env->goal - GPos;
+	
 	 tmp = goal - GPos;
 	 thetad = atan2(tmp[1], tmp[0]);
-	 thetad = thetad - M_PI;
+	// thetad = thetad - M_PI;
 	return vec2(cos(thetad), sin (thetad));
 }
 
@@ -359,6 +360,7 @@ vec2 SIMAgent::Arrival()
 	if (dist > KArrival) {
 		thetad = atan2(tmp[1], tmp[0]);
 		vd = (SIMAgent::MaxVelocity * dist / radius);
+		v0 = v0.Normalize();
 	}
 
 	return vec2(cos(thetad) * vd, sin(thetad) * vd);
