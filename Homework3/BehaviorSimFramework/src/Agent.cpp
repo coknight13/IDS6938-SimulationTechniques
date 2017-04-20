@@ -413,8 +413,6 @@ vec2 SIMAgent::Wander()
 	thetad = atan2(tmp[1], tmp[0]);
 	thetad =  v0 * vWander;
 	vd = (SIMAgent::KWander * dist / radius);
-	
-
 	return vec2(cos(thetad) * vd, sin(thetad) * vd);
 }
 
@@ -454,8 +452,13 @@ vec2 SIMAgent::Separation()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
+	
+	float dist = tmp.Length();
 
-	return tmp;
+	vd = SIMAgent::RNeighborhood * KWander;
+	thetad = atan2(tmp[1], tmp[0]);
+	thetad = KSeparate * M_PI;
+	return vec2(cos(thetad) * vd, sin(thetad) * vd);
 }
 
 /*
@@ -472,6 +475,12 @@ vec2 SIMAgent::Alignment()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
+
+	float dist = tmp.Length();
+
+	vd = SIMAgent::RNeighborhood * (dist / radius);
+	thetad = SIMAgent::KAlign * (dist / radius);
+	return vec2(cos(thetad) * vd, sin(thetad) * vd);
 
 	return tmp;
 }
