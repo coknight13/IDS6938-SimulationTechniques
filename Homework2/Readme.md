@@ -1,4 +1,4 @@
-﻿Part 1: Empirical Tests of Randomness (20 pts).
+﻿Part 1: Empirical Tests of Randomness (20 pts)....
 
 For the empirical test of randomness I used the Mtwister, minstd, knuth_b, ranlux48, and quasi random generators using a uniform distribution.  
 In each use case I selected N values of 10,000, 50,000, and 100,000.  The random numbers produced based on my selected values identified significant 
