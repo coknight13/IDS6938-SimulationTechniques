@@ -455,7 +455,7 @@ vec2 SIMAgent::Separation()
 	
 	float dist = tmp.Length();
 
-	vd = SIMAgent::RNeighborhood * KWander;
+	vd = SIMAgent::RNeighborhood * KWander * MaxVelocity;
 	thetad = atan2(tmp[1], tmp[0]);
 	thetad = KSeparate * M_PI;
 	return vec2(cos(thetad) * vd, sin(thetad) * vd);
