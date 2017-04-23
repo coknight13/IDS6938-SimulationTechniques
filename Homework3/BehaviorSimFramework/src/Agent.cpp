@@ -237,7 +237,7 @@ void SIMAgent::InitValues()
 	KAvoid = 1.0;
 	TAvoid = 1.0;
 	RNeighborhood = 1.0;
-	KSeparate = 1.0;
+	KSeparate = 10.0;
 	KAlign = 1.0;
 	KCohesion = 1.0;
 }
@@ -311,10 +311,9 @@ vec2 SIMAgent::Seek()
 	*********************************************/
 	vec2 tmp;
 	v0 = env->goal - GPos;
-	
 	 tmp = goal - GPos;
 	 thetad = atan2(tmp[1], tmp[0]);
-	// thetad = thetad - M_PI;
+	
 	return vec2(cos(thetad), sin (thetad));
 }
 
@@ -412,7 +411,7 @@ vec2 SIMAgent::Wander()
 	float dist = tmp.Length();
 	thetad = atan2(tmp[1], tmp[0]);
 	thetad =  v0 * vWander;
-	vd = (SIMAgent::KWander * dist / radius);
+	vd = (SIMAgent::KWander * SIMAgent::KNoise * dist / radius);
 	return vec2(cos(thetad) * vd, sin(thetad) * vd);
 }
 
@@ -434,7 +433,36 @@ vec2 SIMAgent::Avoid()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
+	vec2 obstacle;
+	vec2 Radar1;
+	vec2 Radar2;
+
+	 // Agent bounding sphere radius
+	Radar1 = GPos + v0.Normalize() * KAvoid;
+	Radar2 = GPos + v0.Normalize() * KAvoid * 0.5;
+		tmp = goal - GPos;
+		tmp.Normalize();
 	
+	for (int i = 0; i < env->obstaclesNum; i++)
+	{
+		obstacle[0] = env->obstacles[i][0];
+		obstacle[1] = env->obstacles[i][1]; 
+		float dist = (obstacle + Radar1).Length();
+		float dist1 = (obstacle + Radar2).Length();
+
+		if (dist <= env->obstacles[i][2] + KAvoid || dist1 <= env->obstacles[i][2] + KAvoid)
+		{
+
+			thetad = thetad + TAvoid;
+			ClampAngle(thetad);
+			vd = SIMAgent::MaxVelocity * (dist / radius);
+			return vec2(cos(thetad)*vd, sin(thetad)*vd);
+		}
+	
+
+	}
+	
+	thetad = atan2(tmp[1], tmp[0]);
 	return tmp;
 }
 
@@ -452,12 +480,19 @@ vec2 SIMAgent::Separation()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
+	vec2 tmpsum(0.0, 0.0);
 	
+	tmp = goal - GPos;
 	float dist = tmp.Length();
 
-	vd = SIMAgent::RNeighborhood * KWander * MaxVelocity;
-	thetad = atan2(tmp[1], tmp[0]);
-	thetad = KSeparate * M_PI;
+	for (int i = 0; i < SIMAgent::agents.size(); i++)
+	{
+		tmp = goal - SIMAgent::agents[i]->GPos;
+		float dist = tmp.Length();
+	    tmpsum = tmpsum + (tmp / dist) * KSeparate;
+	}
+	vd = tmpsum.Length();
+	thetad = atan2(tmpsum[1], tmpsum[0]);
 	return vec2(cos(thetad) * vd, sin(thetad) * vd);
 }
 
@@ -475,14 +510,18 @@ vec2 SIMAgent::Alignment()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
-
+	vec2 sumtmp (0.0,0.0);
 	float dist = tmp.Length();
 
-	vd = SIMAgent::RNeighborhood * (dist / radius);
-	thetad = SIMAgent::KAlign * (dist / radius);
-	return vec2(cos(thetad) * vd, sin(thetad) * vd);
+	for (int i = 0; i < SIMAgent::agents.size(); i++)
+	{
+		tmp = SIMAgent::agents[i]->v0;
+		sumtmp = sumtmp + tmp.Normalize();
 
-	return tmp;
+	}
+	tmp =  goal - GPos + sumtmp;
+	thetad = atan2(tmp[1], tmp[0]);
+	return vec2(cos(thetad) * vd, sin(thetad) * vd);
 }
 
 /*
@@ -499,9 +538,20 @@ vec2 SIMAgent::Cohesion()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
+	vec2 tmpsum(0.0, 0.0);
+	tmp = goal - GPos;
+	float dist = tmp.Length();
 
-
-	return tmp;
+	for (int i = 0; i < SIMAgent::agents.size(); i++)
+	{
+		tmp = SIMAgent::agents[i]->GPos;
+		float dist = tmp.Length();
+		tmpsum = tmpsum + tmp ;
+	}
+	tmpsum = tmpsum / SIMAgent::agents.size();
+	vd = tmpsum.Length();
+	thetad = atan2(tmpsum[1], tmpsum[0]);
+	return vec2(cos(thetad) * vd, sin(thetad) * vd);
 }
 
 /*
@@ -517,6 +567,8 @@ vec2 SIMAgent::Flocking()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
+	
+	tmp = KSeparate * Separation() + KAlign * Alignment() + KCohesion * Cohesion();
 
 	return tmp;
 }
@@ -535,6 +587,6 @@ vec2 SIMAgent::Leader()
 	// TODO: Add code here
 	*********************************************/
 	vec2 tmp;
-
+	tmp = KAlign * Alignment() + KArrival * Arrival();
 	return tmp;
 }
