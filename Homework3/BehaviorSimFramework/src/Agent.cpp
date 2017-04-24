@@ -227,19 +227,19 @@ void SIMAgent::InitValues()
 	SIMAgent::KNoise, SIMAgent::KWander, SIMAgent::KAvoid, SIMAgent::TAvoid, SIMAgent::RNeighborhood,
 	SIMAgent::KSeparate, SIMAgent::KAlign, SIMAgent::KCohesion.
 	*********************************************/
-	Kv0 = 1.0;
+	Kv0 = 10.0;
 	Kp1 = -200.0;
 	Kv1 = 50.0;
-	KArrival = 1.0;
-	KDeparture = 1.0;
-	KNoise = 1.0;
-	KWander = 1.0;
-	KAvoid = 1.0;
+	KArrival = 55.0;
+	KDeparture = 25.0;
+	KNoise = 424.0;
+	KWander = 15.0;
+	KAvoid = 100.0;
 	TAvoid = 1.0;
-	RNeighborhood = 1.0;
-	KSeparate = 10.0;
-	KAlign = 1.0;
-	KCohesion = 1.0;
+	RNeighborhood = 75.0;
+	KSeparate = 50.0;
+	KAlign = 5.0;
+	KCohesion = 5.0;
 }
 
 /*
